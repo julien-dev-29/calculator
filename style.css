@@ -1,0 +1,123 @@
+:root {
+  --text-main: #edeef0;
+  --bg-main: #111113;
+  --bg-calculator: #18191b;
+  --text-key: #b0b4ba;
+  --bg-key: #2e3135;
+  --bg-key-hover: #272a2d;
+  --bg-key-pressed: #212225;
+  --border-slate: #363a3f;
+  --bg-btn: #004074;
+  --bg-btn-hover: #003362;
+  --bg-btn-active: #0d2847;
+  --border-key: #205d9e;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-content: center;
+  color: var(--text-main);
+  background-color: var(--bg-main);
+}
+
+.calculator {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  height: 700px;
+  width: 500px;
+  background-color: var(--bg-calculator);
+  border-radius: 10px;
+  border: 5px solid var(--border-slate);
+}
+
+.display {
+  margin: 25px 15px;
+  flex: 1;
+  border-bottom: 1px solid var(--border-key);
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 48px;
+}
+
+.keypad {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.key {
+  height: 100px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-key);
+  background-color: var(--bg-key);
+  border-radius: 3px;
+  font-weight: 900;
+}
+.row {
+  flex: 1;
+  display: flex;
+  gap: 5px;
+}
+
+.key:hover {
+  cursor: pointer;
+  background-color: var(--bg-key-hover);
+}
+
+.key:active {
+  background-color: var(--bg-key-pressed);
+}
+
+#btn {
+  background-color: var(--bg-btn);
+  color: white;
+}
+
+#btn:hover {
+  background-color: var(--bg-btn-hover);
+}
+
+#btn:active {
+  background-color: var(--bg-btn-active);
+}
+
+.operator {
+  background-color: var(--bg-key-hover);
+}
+
+.operator:hover {
+  background-color: var(--bg-key);
+}
+
+.operator:active {
+  background-color: var(--bg-key-pressed);
+}
+
+.clear {
+  background-color: #F76B15;
+  color: white;
+}
+
+.clear:hover {
+  background-color: #A35829;
+}
+
+.clear:active {
+  background-color: #7E451D;
+}
