@@ -45,7 +45,6 @@ body {
 .display {
   margin: 25px 15px;
   flex: 1;
-  border-bottom: 1px solid var(--border-key);
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -59,6 +58,7 @@ body {
 }
 
 .key {
+  border: none;
   height: 100px;
   flex: 1;
   display: flex;
