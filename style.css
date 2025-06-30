@@ -109,15 +109,15 @@ body {
   background-color: var(--bg-key-pressed);
 }
 
-.clear {
+#clear {
   background-color: #F76B15;
   color: white;
 }
 
-.clear:hover {
+#clear:hover {
   background-color: #A35829;
 }
 
-.clear:active {
+#clear:active {
   background-color: #7E451D;
 }

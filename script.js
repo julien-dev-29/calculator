@@ -1,5 +1,3 @@
-const { log } = require("console")
-
 let nb1 = ''
 let nb2 = ''
 let operator = ''
@@ -12,13 +10,115 @@ const displayElement = document.querySelector('.display')
 /**
  * INPUTS
  */
-let digits = document.querySelectorAll('.digit')
-let operators = document.querySelectorAll('.operator')
-let btn = document.querySelector('#btn').addEventListener('click', handleEvents)
-let clearButton = document.querySelector('.clear').addEventListener('click', handleEvents)
-let backspaceButton = document.querySelector('.backspace').addEventListener('click', handleEvents)
-Array.from(digits).map(item => item.addEventListener('click', handleEvents))
-Array.from(operators).map(item => item.addEventListener('click', handleEvents))
+document.querySelectorAll('[data-number]')
+    .forEach(number => number.addEventListener('click', appendNumber))
+document.querySelectorAll('[data-operator]')
+    .forEach(number => number.addEventListener('click', setOperator))
+document.getElementById('clear').addEventListener('click', clear)
+document.getElementById('btn').addEventListener('click', evaluate)
+document.getElementById('delete').addEventListener('click', deleteNumber)
+
+
+/**
+ * 
+ * @returns 
+ */
+function evaluate() {
+    try {
+        checkError()
+        nb1 = Math.round(operate(operator, nb1, nb2) * 10000) / 10000
+        nb2 = ""
+        if (!isSecondOperator) {
+            operator = ""
+            isResultDisplayed = true
+        }
+        isSecondOperator = false
+        displayElement.textContent = nb1
+    } catch (error) {
+        displayElement.textContent = error.message
+    }
+}
+
+/**
+ * 
+ */
+function appendNumber(e) {
+    if (isResultDisplayed) {
+        clear()
+        isResultDisplayed = false
+    }
+    if (isSecondNb) {
+        if (displayElement.textContent === "0") {
+            nb2 = e.target.textContent
+            return displayElement.textContent = nb2
+        }
+        nb2 += e.target.textContent
+        displayElement.textContent = nb2
+    } else {
+        if (displayElement.textContent === "0") {
+            nb1 = e.target.textContent
+            return displayElement.textContent = nb1
+        }
+        nb1 += e.target.textContent
+        displayElement.textContent = nb1
+    }
+}
+
+/**
+ * 
+ * @param {PointerEvent} e 
+ */
+function setOperator(e) {
+    isSecondNb = true
+    if (alreadyOperator()) {
+        isSecondOperator = true
+        if (nb2 === "") return operator = e.target.textContent
+        evaluate()
+    }
+    if (isResultDisplayed) {
+        isResultDisplayed = false
+    }
+    operator = e.target.textContent
+}
+
+function alreadyOperator() {
+    console.log(operator.length);
+
+    return operator.length > 0
+}
+
+/**
+ * Si je n'ai pas entré le deuxieme nombre
+ * ou si j'essaye de diviser par zero
+ * 
+ * @returns {String || null}
+ */
+function checkError() {
+    if (nb2 === "") throw new Error("🤔")
+    if (nb1 === "." || nb2 === ".") throw new Error("🤔")
+    if (operator === "/" && nb2 === "0") throw new Error("Error")
+}
+
+/**
+ * Reset the variables nb1, nb2, operator
+ */
+function clear() {
+    isSecondNb = false
+    displayElement.textContent = 0
+    nb1 = ''
+    nb2 = ''
+    operator = ''
+}
+
+/**
+ * Delete the last input
+ * 
+ * @returns {}
+ */
+function deleteNumber() {
+    if (displayElement.textContent.length === 1) return displayElement.textContent = "0"
+    displayElement.textContent = displayElement.textContent.split('').slice(0, -1).join('')
+}
 
 function add(a, b) {
     return a + b
@@ -36,21 +136,26 @@ function divide(a, b) {
     return a / b
 }
 
-function operate(operator, numberA, numberB) {
+function operate(operator, a, b) {
+    console.log(a + " => a");
+    console.log(b + " => b");
+    console.log(operator);
 
+    a = Number(a)
+    b = Number(b)
     switch (operator) {
 
         case "+":
-            return add(numberA, numberB)
+            return add(a, b)
 
         case "-":
-            return substract(numberA, numberB)
+            return substract(a, b)
 
         case "*":
-            return multiply(numberA, numberB)
+            return multiply(a, b)
 
         case "/":
-            return divide(numberA, numberB)
+            return divide(a, b)
 
         default:
             break;
@@ -58,135 +163,11 @@ function operate(operator, numberA, numberB) {
 }
 
 /**
- * Display the numbers, the result and the errors
  * 
- * @returns 
+ * @param {KeyboardEvent} e 
  */
-function handleEvents(e) {
-    switch (e.target.dataset["type"]) {
-
-        case "=":
-            displayResult()
-            break
-
-        case "digit":
-            displayNumber(e)
-            break
-
-        case "operator":
-            if (operator.length > 0) {
-                isSecondOperator = true
-                displayResult()
-            }
-            displayOperator(e)
-            break
-
-        case "backspace":
-            backspace(e)
-            break
-
-        case "clear":
-            clear()
-            break
-    }
+function handleKeyEvents(e) {
+    console.log(e.code);
+    var digit = document.getElementById(e.code)
+    digit.click()
 }
-
-/**
- * 
- * @returns 
- */
-function displayResult() {
-    try {
-        checkError()
-        let nbA = parseFloat(nb1)
-        let nbB = parseFloat(nb2)
-        nb1 = Math.round(operate(operator, nbA, nbB) * 100) / 100
-        nb2 = ""
-        if (!isSecondOperator) {
-            operator = ""
-            isResultDisplayed = true
-            isDecimalSeparator = false
-        }
-        isSecondNb = false
-        isSecondOperator = false
-        displayElement.textContent = nb1
-        document.getElementById(".").disabled = false
-    } catch (error) {
-        displayElement.textContent = error.message
-    }
-}
-
-
-/**
- * 
- */
-function displayNumber(e) {
-    if (e.target.textContent === ".") {
-        isDecimalSeparator = true
-        /**
-         * @type {HTMLButtonElement}
-         */
-        document.getElementById(".").disabled = true
-    }
-    console.log();
-    
-    if (isResultDisplayed) {
-        clear()
-        isResultDisplayed = false
-    }
-    if (isSecondNb) {
-        nb2 += e.target.textContent
-        displayElement.textContent = nb2
-    } else {
-        nb1 += e.target.textContent
-        displayElement.textContent = nb1
-    }
-}
-
-/**
- * 
- * @param {PointerEvent} e 
- */
-function displayOperator(e) {
-    if (isResultDisplayed) {
-        isResultDisplayed = false
-    }
-    operator = e.target.textContent
-    isSecondNb = true
-    document.getElementById(".").disabled = false
-}
-
-/**
- * Si je n'ai pas entré le deuxieme nombre
- * ou si j'essaye de diviser par zero
- * 
- * @returns {String || null}
- */
-function checkError() {
-    if (nb2 === "") throw new Error("🤔")
-    if (operator === "/" && nb2 === "0")
-        throw new Error("Error")
-}
-
-/**
- * Reset the variables nb1, nb2, operator
- */
-function clear() {
-    displayElement.textContent = 0
-    nb1 = ''
-    nb2 = ''
-    operator = ''
-    isSecondNb = false
-    isSecondOperator = false
-    isResultDisplayed = false
-}
-
-function backspace(e) {
-    console.log("yolo");
-
-    nb1.split('').pop()
-    nb2.split('').pop()
-    displayNumber(e)
-}
-
-
