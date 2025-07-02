@@ -10,7 +10,7 @@
 
 <body>
     <div class="calculator">
-        <div class="display">0</div>
+        <div id="display" class="display">0</div>
         <div class="keypad">
             <div class="row">
                 <button class="key" id="clear">clear</button>
@@ -23,30 +23,30 @@
                         <path d="m18 9-6 6" />
                     </svg></button>
                 <button class="key">?</button>
-                <button class="key" data-code="NumpadDivide" data-operator>/</button>
+                <button class="key operator" data-code="NumpadDivide" data-operator>/</button>
             </div>
             <div class="row">
-                <button class="key" data-code="Numpad7" data-number>7</button>
-                <button class="key" data-code="Numpad8" data-number>8</button>
-                <button class="key" data-code="Numpad9" data-number>9</button>
-                <button class="key" data-code="NumpadMultiply" data-operator>*</button>
+                <button class="key digit" data-code="Numpad7">7</button>
+                <button class="key digit" data-code="Numpad8">8</button>
+                <button class="key digit" data-code="Numpad9">9</button>
+                <button class="key operator" data-code="NumpadMultiply">*</button>
             </div>
             <div class="row">
-                <button class="key" data-code="Numpad4" data-number>4</button>
-                <button class="key" data-code="Numpad5" data-number>5</button>
-                <button class="key" data-code="Numpad6" data-number>6</button>
-                <button class="key" data-code="NumpadSubtract" data-operator>-</button>
+                <button class="key digit" data-code="Numpad4">4</button>
+                <button class="key digit" data-code="Numpad5">5</button>
+                <button class="key digit" data-code="Numpad6">6</button>
+                <button class="key operator" data-code="NumpadSubtract">-</button>
             </div>
             <div class="row">
-                <button class="key" data-code="Numpad1" data-number>1</button>
-                <button class="key" data-code="Numpad2" data-number>2</button>
-                <button class="key" data-code="Numpad3" data-number>3</button>
-                <button class="key" data-code="NumpadAdd" data-operator>+</button>
+                <button class="key digit" data-code="Numpad1">1</button>
+                <button class="key digit" data-code="Numpad2">2</button>
+                <button class="key digit" data-code="Numpad3">3</button>
+                <button class="key operator" data-code="NumpadAdd">+</button>
             </div>
             <div class="row">
                 <button class="key"> +/- </button>
-                <button class="key" data-code="Numpad0" data-number>0</button>
-                <button class="key" data-code="NumpadDecimal">.</button>
+                <button class="key digit" data-code="Numpad0">0</button>
+                <button class="key" id="decimal" data-code="NumpadDecimal">.</button>
                 <button class="key" id="btn" data-code="Equal">=</button>
             </div>
         </div>

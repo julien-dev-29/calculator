@@ -110,14 +110,14 @@ body {
 }
 
 #clear {
-  background-color: #F76B15;
-  color: white;
+  background-color: #331E0B;
+  color: #FFE0C2;
 }
 
 #clear:hover {
-  background-color: #A35829;
+  background-color: #462100;
 }
 
 #clear:active {
-  background-color: #7E451D;
+  background-color: #562800;
 }
