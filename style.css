@@ -121,3 +121,7 @@ body {
 #clear:active {
   background-color: #562800;
 }
+
+#decimal:disabled {
+  background-color: #111113;
+}
