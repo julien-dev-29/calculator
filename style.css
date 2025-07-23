@@ -1,12 +1,12 @@
 :root {
   --text-main: #edeef0;
-  --bg-main: #111113;
-  --bg-calculator: #18191b;
-  --text-key: #b0b4ba;
-  --bg-key: #2e3135;
-  --bg-key-hover: #272a2d;
-  --bg-key-pressed: #212225;
-  --border-slate: #363a3f;
+  --bg-main: #111111;
+  --bg-calculator: #191919;
+  --text-key: #b4b4b4;
+  --bg-key: #222222;
+  --bg-key-hover: #2a2a2a;
+  --bg-key-pressed: #313131;
+  --border: #3a3a3a;
   --bg-btn: #004074;
   --bg-btn-hover: #003362;
   --bg-btn-active: #0d2847;
@@ -35,20 +35,18 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-content: center;
-  height: 700px;
-  width: 500px;
+  height: 500px;
+  width: 400px;
   background-color: var(--bg-calculator);
   border-radius: 10px;
-  border: 5px solid var(--border-slate);
+  border: 5px solid var(--border);
 }
 
 .display {
-  margin: 25px 15px;
-  flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  font-size: 48px;
+  font-size: 32px;
 }
 
 .keypad {
@@ -59,7 +57,7 @@ body {
 
 .key {
   border: none;
-  height: 100px;
+  height: 70px;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -110,8 +108,8 @@ body {
 }
 
 #clear {
-  background-color: #331E0B;
-  color: #FFE0C2;
+  background-color: #331e0b;
+  color: #ffe0c2;
 }
 
 #clear:hover {
@@ -124,4 +122,24 @@ body {
 
 #decimal:disabled {
   background-color: #111113;
+}
+
+#display {
+  border-radius: 5px;
+  background-color: #101b20;
+  border: 1px solid #045468;
+  color: #4ccce6;
+  padding: 12px;
+}
+
+#equal {
+  background-color: #082c36;
+}
+
+#equal:hover {
+  background-color: #003848;
+}
+
+#equal:active {
+  background-color: #004558;
 }

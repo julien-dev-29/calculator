@@ -13,9 +13,9 @@
         <div id="display" class="display">0</div>
         <div class="keypad">
             <div class="row">
-                <button class="key" id="clear" data-code="Delete">clear</button>
-                <button class="key" id="delete" data-code="Backspace"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                <button class="key" data-code="Delete" data-type="clear">clear</button>
+                <button class="key" data-code="Backspace" data-type="backspace"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-delete-icon lucide-delete">
                         <path
                             d="M10 5a2 2 0 0 0-1.344.519l-6.328 5.74a1 1 0 0 0 0 1.481l6.328 5.741A2 2 0 0 0 10 19h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z" />
@@ -23,35 +23,35 @@
                         <path d="m18 9-6 6" />
                     </svg></button>
                 <button class="key">?</button>
-                <button class="key operator" data-code="NumpadDivide" data-operator>/</button>
+                <button class="key" data-code="NumpadDivide" data-type="operator">/</button>
             </div>
             <div class="row">
-                <button class="key digit" data-code="Numpad7">7</button>
-                <button class="key digit" data-code="Numpad8">8</button>
-                <button class="key digit" data-code="Numpad9">9</button>
-                <button class="key operator" data-code="NumpadMultiply">*</button>
+                <button class="key" data-code="Numpad7" data-value="7" data-type="digit">7</button>
+                <button class="key" data-code="Numpad8" data-value="8" data-type="digit">8</button>
+                <button class="key" data-code="Numpad9" data-value="9" data-type="digit">9</button>
+                <button class="key" data-code="NumpadMultiply" data-type="operator">*</button>
             </div>
             <div class="row">
-                <button class="key digit" data-code="Numpad4">4</button>
-                <button class="key digit" data-code="Numpad5">5</button>
-                <button class="key digit" data-code="Numpad6">6</button>
-                <button class="key operator" data-code="NumpadSubtract">-</button>
+                <button class="key" data-code="Numpad4" data-value="4" data-type="digit">4</button>
+                <button class="key" data-code="Numpad5" data-value="5" data-type="digit">5</button>
+                <button class="key" data-code="Numpad6" data-value="6" data-type="digit">6</button>
+                <button class="key" data-code="NumpadSubtract" data-type="operator">-</button>
             </div>
             <div class="row">
-                <button class="key digit" data-code="Numpad1">1</button>
-                <button class="key digit" data-code="Numpad2">2</button>
-                <button class="key digit" data-code="Numpad3">3</button>
-                <button class="key operator" data-code="NumpadAdd">+</button>
+                <button class="key" data-code="Numpad1" data-value="1" data-type="digit">1</button>
+                <button class="key" data-code="Numpad2" data-value="2" data-type="digit">2</button>
+                <button class="key" data-code="Numpad3" data-value="3" data-type="digit">3</button>
+                <button class="key" data-code="NumpadAdd" data-type="operator">+</button>
             </div>
             <div class="row">
                 <button class="key"> +/- </button>
-                <button class="key digit" data-code="Numpad0">0</button>
-                <button class="key digit" id="decimal" data-code="NumpadDecimal">.</button>
-                <button class="key" id="btn" data-code="Equal">=</button>
+                <button class="key" data-code="Numpad0" data-value="0" data-type="digit">0</button>
+                <button class="key" data-code="NumpadDecimal" data-value="." data-type="decimal">.</button>
+                <button class="key" id="equal" data-code="Equal" data-type="equal">=</button>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
 </body>
 
 </html>
