@@ -11,6 +11,7 @@
   --bg-btn-hover: #003362;
   --bg-btn-active: #0d2847;
   --border-key: #205d9e;
+  --bg-btn-operation: #484848;
 }
 
 * {
@@ -44,9 +45,9 @@ body {
 
 .row {
   display: flex;
-  margin-top: 8px;
+  margin-top: 10px;
   justify-content: space-between;
-  gap: 5px;
+  gap: 10px;
 }
 
 button {
@@ -57,4 +58,14 @@ button {
   border: none;
   background-color: var(--bg-key);
   color: var(--text-main);
+}
+
+.operation {
+  background-color: var(--bg-btn-operation);
+  color: var(--bg-main);
+}
+
+.equal {
+  background-color: var(--bg-btn);
+  color: var();
 }
