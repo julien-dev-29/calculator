@@ -13,7 +13,7 @@
   --border-key: #205d9e;
   --bg-btn-operation: #6e6e6e;
   --bg-btn-operation-hover: #7b7b7b;
-  --bg-btn-operation-active: #323232;
+  --bg-btn-operation-active: #4d4d4d;
 }
 
 * {
@@ -33,12 +33,30 @@ body {
   padding: 10px;
   display: flex;
   flex-direction: column;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: var(--bg-calculator);
 }
 
 .output {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.previousOperand {
+  flex: 1;
+  align-self: flex-end;
+}
+
+.currentOperand {
+  font-size: 1.8rem;
+  flex: 1;
+  align-self: flex-end;
 }
 
 .keypad {
