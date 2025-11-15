@@ -69,3 +69,11 @@ button {
   background-color: var(--bg-btn);
   color: var();
 }
+
+.equal:hover {
+  background-color: var(--bg-btn-hover);
+}
+
+.equal:active {
+  background-color: var(--bg-btn-active);
+}
