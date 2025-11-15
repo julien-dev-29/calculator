@@ -21,125 +21,38 @@
 
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  place-content: center;
   color: var(--text-main);
-  background-color: var(--bg-main);
 }
 
 .calculator {
+  height: 100vh;
+  width: 100vw;
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-content: center;
-  height: 500px;
-  width: 400px;
+  align-items: center;
   background-color: var(--bg-calculator);
-  border-radius: 10px;
-  border: 5px solid var(--border);
 }
 
-.display {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  font-size: 32px;
+.output {
 }
 
 .keypad {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+  width: 100%;
 }
 
-.key {
-  border: none;
-  height: 70px;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--text-key);
-  background-color: var(--bg-key);
-  border-radius: 3px;
-  font-weight: 900;
-}
 .row {
-  flex: 1;
   display: flex;
+  margin-top: 8px;
+  justify-content: space-between;
   gap: 5px;
 }
 
-.key:hover {
-  cursor: pointer;
-  background-color: var(--bg-key-hover);
-}
-
-.key:active {
-  background-color: var(--bg-key-pressed);
-}
-
-#btn {
-  background-color: var(--bg-btn);
-  color: white;
-}
-
-#btn:hover {
-  background-color: var(--bg-btn-hover);
-}
-
-#btn:active {
-  background-color: var(--bg-btn-active);
-}
-
-.operator {
-  background-color: var(--bg-key-hover);
-}
-
-.operator:hover {
+button {
+  padding: 16px;
+  flex: 1;
+  border: none;
   background-color: var(--bg-key);
-}
-
-.operator:active {
-  background-color: var(--bg-key-pressed);
-}
-
-#clear {
-  background-color: #331e0b;
-  color: #ffe0c2;
-}
-
-#clear:hover {
-  background-color: #462100;
-}
-
-#clear:active {
-  background-color: #562800;
-}
-
-#decimal:disabled {
-  background-color: #111113;
-}
-
-#display {
-  border-radius: 5px;
-  background-color: #101b20;
-  border: 1px solid #045468;
-  color: #4ccce6;
-  padding: 12px;
-}
-
-#equal {
-  background-color: #082c36;
-}
-
-#equal:hover {
-  background-color: #003848;
-}
-
-#equal:active {
-  background-color: #004558;
+  color: var(--text-main);
 }
