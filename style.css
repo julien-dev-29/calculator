@@ -11,7 +11,9 @@
   --bg-btn-hover: #003362;
   --bg-btn-active: #0d2847;
   --border-key: #205d9e;
-  --bg-btn-operation: #484848;
+  --bg-btn-operation: #6e6e6e;
+  --bg-btn-operation-hover: #7b7b7b;
+  --bg-btn-operation-active: #323232;
 }
 
 * {
@@ -60,9 +62,25 @@ button {
   color: var(--text-main);
 }
 
+.number:hover {
+  background-color: var(--bg-key-hover);
+}
+
+.number:active {
+  background-color: var(--bg-key-pressed);
+}
+
 .operation {
   background-color: var(--bg-btn-operation);
   color: var(--bg-main);
+}
+
+.operation:hover {
+  background-color: var(--bg-btn-operation-hover);
+}
+
+.operation:active {
+  background-color: var(--bg-btn-operation);
 }
 
 .equal {
