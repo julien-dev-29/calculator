@@ -51,6 +51,7 @@ export default class Calculator {
 
   appendNumberTofirstNumber(number: string) {
     if (this.currentOperand.textContent === "0" || this.currentOperand.textContent === "" || this.resultIsDisplayedByEqual) {
+      this.secondNumber = ""
       this.firstNumber = number
       this.currentOperand.textContent = this.firstNumber
       this.resultIsDisplayedByEqual = false
@@ -61,13 +62,14 @@ export default class Calculator {
   }
 
   appendNumberToSecondNumber(number: string) {
-    if (this.currentOperand.textContent === "0" || this.currentOperand.textContent === "" || this.resultIsDisplayedByOperator) {
+    debugger
+    if (this.secondNumber.length > 0) {
+      this.secondNumber += number
+      this.currentOperand.textContent = this.secondNumber
+    } else {
       this.secondNumber = number
       this.currentOperand.textContent = this.secondNumber
       this.resultIsDisplayedByOperator = false
-    } else {
-      this.secondNumber += number
-      this.currentOperand.textContent = this.secondNumber
     }
   }
 
@@ -123,6 +125,7 @@ export default class Calculator {
     this.currentOperand.textContent = this.operate().toString()
     this.resultIsDisplayedByEqual = true
     this.operatorIsSet = false
+    this.previousOperand.textContent += this.secondNumber + "="
   }
 
   operate(): number | string {
