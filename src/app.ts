@@ -11,17 +11,21 @@ const currentElement: HTMLDivElement | null = document.querySelector(".currentOp
 const calculator: CalculatorType = new Calculator(previousElement!, currentElement!)
 
 numberButtons.forEach((button) => button.addEventListener('click', () => {
-    calculator.appendNumber(button.textContent)
-    console.log(button);
-
+    calculator.handleAddNumber(button.textContent)
 }))
 
 operationButtons.forEach((button) => button.addEventListener('click', () => {
-    calculator.setOperation(button.textContent)
+    calculator.handleSetOperator(button.textContent)
 }))
 
 deleteButton.addEventListener('click', () => {
-    console.log("delete");
+    calculator.handleDelete()
+})
 
-    calculator.delete()
+clearButton.addEventListener('click', () => {
+    calculator.clear()
+})
+
+equalButton.addEventListener('click', () => {
+    calculator.handleEqual()
 })

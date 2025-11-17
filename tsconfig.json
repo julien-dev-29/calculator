@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "outDir": "./built",
+    "rootDir": "src",
     "allowJs": true,
-    "target": "es5",
+    "target": "es6",
     "module": "esnext"
   },
   "include": ["./src/**/*"]

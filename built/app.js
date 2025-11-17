@@ -1,20 +1,24 @@
 import Calculator from "./calculator.js";
-var numberButtons = document.querySelectorAll(".number");
-var operationButtons = document.querySelectorAll(".operation");
-var equalButton = document.querySelector(".equal");
-var deleteButton = document.querySelector(".delete");
-var clearButton = document.querySelector(".clear");
-var previousElement = document.querySelector(".previousOperand");
-var currentElement = document.querySelector(".currentOperand");
-var calculator = new Calculator(previousElement, currentElement);
-numberButtons.forEach(function (button) { return button.addEventListener('click', function () {
-    calculator.appendNumber(button.textContent);
-    console.log(button);
-}); });
-operationButtons.forEach(function (button) { return button.addEventListener('click', function () {
-    calculator.setOperation(button.textContent);
-}); });
-deleteButton.addEventListener('click', function () {
-    console.log("delete");
-    calculator.delete();
+const numberButtons = document.querySelectorAll(".number");
+const operationButtons = document.querySelectorAll(".operation");
+const equalButton = document.querySelector(".equal");
+const deleteButton = document.querySelector(".delete");
+const clearButton = document.querySelector(".clear");
+const previousElement = document.querySelector(".previousOperand");
+const currentElement = document.querySelector(".currentOperand");
+const calculator = new Calculator(previousElement, currentElement);
+numberButtons.forEach((button) => button.addEventListener('click', () => {
+    calculator.handleAddNumber(button.textContent);
+}));
+operationButtons.forEach((button) => button.addEventListener('click', () => {
+    calculator.handleSetOperator(button.textContent);
+}));
+deleteButton.addEventListener('click', () => {
+    calculator.handleDelete();
+});
+clearButton.addEventListener('click', () => {
+    calculator.clear();
+});
+equalButton.addEventListener('click', () => {
+    calculator.handleEqual();
 });
