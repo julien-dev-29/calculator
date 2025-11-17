@@ -40,6 +40,10 @@ body {
 }
 
 .output {
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #0D1520;
+  color: #70B8FF;
   flex: 1;
   padding: 8px;
   width: 100%;
