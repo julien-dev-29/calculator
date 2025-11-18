@@ -22,3 +22,19 @@ clearButton.addEventListener('click', () => {
 equalButton.addEventListener('click', () => {
     calculator.handleEqual();
 });
+window.addEventListener('keypress', (e) => {
+    console.log(e);
+    console.log(e.key);
+    const regexNumber = /[0-9 .]/g;
+    const regexOperator = /[\/*-+]/g;
+    if (e.key.match(regexNumber))
+        calculator.handleAddNumber(e.key);
+    else if (e.key.match(regexOperator))
+        calculator.handleSetOperator(e.key);
+    else if (e.key === "c")
+        calculator.clear();
+    else if (e.key === "d")
+        calculator.handleDelete();
+    else if (e.key === "Enter")
+        calculator.handleEqual();
+});
