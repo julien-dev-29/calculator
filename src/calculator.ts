@@ -4,7 +4,6 @@ export default interface CalculatorType {
   currentOperand: string
   previousOperand: string
   operation: string
-  resultIsDisplay: boolean
 }
 
 export default class Calculator {
@@ -35,24 +34,17 @@ export default class Calculator {
   appendNumber(number: string) {
     if (number === "." && this.currentOperand.includes(number)) return
     if (this.currentOperand === "0") return this.currentOperand = number
-    if (this.resultIsDisplay) {
-      this.previousOperand = this.currentOperand
-      this.currentOperand = number
-      return this.resultIsDisplay = false
-    }
-    if (this.operation && this.previousOperand === "") {
-      this.previousOperand = this.currentOperand
-      return this.currentOperand = number
-    }
     this.currentOperand += number
   }
 
   chooseOperation(operation: string): void | string {
-    if (this.operation) {
+    if (this.currentOperand === "") return
+    if (this.previousOperand !== "") {
       this.compute()
-      this.resultIsDisplay = false
     }
     this.operation = operation
+    this.previousOperand = this.currentOperand
+    this.currentOperand = ""
   }
 
   compute() {
@@ -82,7 +74,6 @@ export default class Calculator {
     this.currentOperand = computation.toString()
     this.previousOperand = ""
     this.operation = undefined
-    this.resultIsDisplay = true
   }
 
   updateDisplay() {

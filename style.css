@@ -71,6 +71,10 @@ body {
   gap: 4px;
 }
 
+.clear {
+  flex-basis: 25%;
+}
+
 button {
   border-radius: 5px;
   font-size: 1.5rem;

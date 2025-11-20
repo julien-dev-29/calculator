@@ -25,23 +25,17 @@ export default class Calculator {
             return;
         if (this.currentOperand === "0")
             return this.currentOperand = number;
-        if (this.resultIsDisplay) {
-            this.previousOperand = this.currentOperand;
-            this.currentOperand = number;
-            return this.resultIsDisplay = false;
-        }
-        if (this.operation && this.previousOperand === "") {
-            this.previousOperand = this.currentOperand;
-            return this.currentOperand = number;
-        }
         this.currentOperand += number;
     }
     chooseOperation(operation) {
-        if (this.operation) {
+        if (this.currentOperand === "")
+            return;
+        if (this.previousOperand !== "") {
             this.compute();
-            this.resultIsDisplay = false;
         }
         this.operation = operation;
+        this.previousOperand = this.currentOperand;
+        this.currentOperand = "";
     }
     compute() {
         if (this.previousOperand.length === 0 || this.currentOperand.length === 0 || this.operation.length === 0)
@@ -71,7 +65,6 @@ export default class Calculator {
         this.currentOperand = computation.toString();
         this.previousOperand = "";
         this.operation = undefined;
-        this.resultIsDisplay = true;
     }
     updateDisplay() {
         this.currentOperandTextElement.textContent = this.currentOperand;
