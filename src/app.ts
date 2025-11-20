@@ -10,39 +10,44 @@ const currentElement: HTMLDivElement | null = document.querySelector(".currentOp
 const calculator: CalculatorType = new Calculator(previousElement!, currentElement!)
 
 numberButtons.forEach((button) => button.addEventListener('click', () => {
-    calculator.handleAddNumber(button.textContent)
+    calculator.appendNumber(button.textContent)
+    calculator.updateDisplay()
 }))
 
 operationButtons.forEach((button) => button.addEventListener('click', () => {
-    calculator.handleSetOperator(button.textContent)
+    calculator.chooseOperation(button.textContent)
+    calculator.updateDisplay()
 }))
 
 deleteButton.addEventListener('click', () => {
-    calculator.handleDelete()
+    calculator.delete()
+    calculator.updateDisplay()
 })
 
 clearButton.addEventListener('click', () => {
     calculator.clear()
+    calculator.updateDisplay()
 })
 
 equalButton.addEventListener('click', () => {
-    calculator.handleEqual()
+    calculator.compute()
+    calculator.updateDisplay()
 })
 
 window.addEventListener('keypress', (e) => {
     console.log(e);
-
-    console.log(e.key);
-    const regexNumber = /[0-9 .]/g
+    
+    const regexNumber = /[0-9.]/g
     const regexOperator = /[\/*-+]/g
     if (e.key.match(regexNumber))
-        calculator.handleAddNumber(e.key)
+        calculator.appendNumber(e.key)
     else if (e.key.match(regexOperator))
-        calculator.handleSetOperator(e.key)
+        calculator.chooseOperation(e.key)
     else if (e.key === "c")
         calculator.clear()
     else if (e.key === "d")
-        calculator.handleDelete()
+        calculator.delete()
     else if (e.key === "Enter")
-        calculator.handleEqual()
+        calculator.compute()
+    calculator.updateDisplay()
 })

@@ -1,95 +1,82 @@
 export default class Calculator {
-    previousOperandElement;
-    currentOperandElement;
+    previousTextElement;
+    currentOperandTextElement;
     currentOperand;
     previousOperand;
-    operator;
-    resultDisplayByEqual;
-    constructor(previousOperandElement, currentOperandElement) {
-        this.previousOperandElement = previousOperandElement;
-        this.currentOperandElement = currentOperandElement;
+    operation;
+    constructor(previousTextElement, currentOperandTextElement) {
+        this.previousTextElement = previousTextElement;
+        this.currentOperandTextElement = currentOperandTextElement;
         this.clear();
     }
     clear() {
-        this.previousOperandElement.textContent = "";
-        this.currentOperandElement.textContent = "0";
-        this.currentOperand = "";
+        this.currentOperand = "0";
         this.previousOperand = "";
-        this.operator = "";
-        this.resultDisplayByEqual = false;
+        this.operation = undefined;
+        this.updateDisplay();
     }
-    handleDelete() {
-        if (this.currentOperand.length >= 1) {
-            this.currentOperand = this.currentOperand.slice(0, this.currentOperand.length - 1);
-            this.currentOperandElement.textContent = this.currentOperand;
-            if (this.currentOperand.length === 0)
-                this.currentOperandElement.textContent = "0";
-        }
+    delete() {
+        if (this.currentOperand.length === 1)
+            return this.currentOperand = "0";
+        this.currentOperand = this.currentOperand.slice(0, -1);
     }
-    handleAddNumber(number) {
-        if (number === "." && this.currentOperandElement.textContent.includes('.'))
+    appendNumber(number) {
+        if (number === "." && this.currentOperand.includes(number))
             return;
-        this.resultDisplayByEqual ? this.currentOperand = number : this.currentOperand += number;
-        this.currentOperandElement.textContent = this.currentOperand;
-        this.previousOperandElement.textContent = this.previousOperand + this.operator;
-        this.resultDisplayByEqual = false;
-    }
-    handleSetOperator(operator) {
-        if (this.operator.length > 0) {
-            if (this.currentOperand === "")
-                return this.operator = operator;
-            this.currentOperandElement.textContent = this.operate().toString();
-            this.previousOperandElement.textContent += this.currentOperand + "=";
-            this.currentOperand = this.currentOperandElement.textContent;
-            this.resultDisplayByEqual = false;
+        if (this.currentOperand === "0")
+            return this.currentOperand = number;
+        if (this.resultIsDisplay) {
+            this.previousOperand = this.currentOperand;
+            this.currentOperand = number;
+            return this.resultIsDisplay = false;
         }
-        this.operator = operator;
-        this.previousOperand = this.currentOperand;
-        this.currentOperand = "";
+        if (this.operation && this.previousOperand === "") {
+            this.previousOperand = this.currentOperand;
+            return this.currentOperand = number;
+        }
+        this.currentOperand += number;
     }
-    handleEqual() {
-        if (this.resultDisplayByEqual)
+    chooseOperation(operation) {
+        if (this.operation) {
+            this.compute();
+            this.resultIsDisplay = false;
+        }
+        this.operation = operation;
+    }
+    compute() {
+        if (this.previousOperand.length === 0 || this.currentOperand.length === 0 || this.operation.length === 0)
             return;
-        if (this.currentOperand.length === 0 || this.previousOperand.length === 0 || this.operator.length === 0)
-            return;
-        if (parseFloat(this.currentOperand) === 0) {
-            this.currentOperandElement.textContent = "Error";
-        }
-        else {
-            this.currentOperandElement.textContent = this.operate().toString();
-            this.previousOperandElement.textContent += this.currentOperand + "=";
-            this.currentOperand = this.currentOperandElement.textContent;
-            this.previousOperand = "";
-            this.operator = "";
-            this.resultDisplayByEqual = true;
-        }
-    }
-    operate() {
+        let computation;
         var a = Number(this.previousOperand);
         var b = Number(this.currentOperand);
-        switch (this.operator) {
+        switch (this.operation) {
             case "+":
-                return add(a, b);
+                computation = a + b;
+                break;
             case "-":
-                return substract(a, b);
+                computation = a - b;
+                break;
             case "*":
-                return multiply(a, b);
+                computation = a * b;
+                break;
             case "/":
-                return divide(a, b).toFixed(6);
+                b === 0 ?
+                    computation = "Error"
+                    :
+                        computation = Number((a / b).toFixed(6));
+                break;
             default:
                 break;
         }
+        this.currentOperand = computation.toString();
+        this.previousOperand = "";
+        this.operation = undefined;
+        this.resultIsDisplay = true;
     }
-}
-function add(a, b) {
-    return a + b;
-}
-function substract(a, b) {
-    return a - b;
-}
-function multiply(a, b) {
-    return a * b;
-}
-function divide(a, b) {
-    return a / b;
+    updateDisplay() {
+        this.currentOperandTextElement.textContent = this.currentOperand;
+        if (this.previousOperand.length > 0 && this.operation)
+            return this.previousTextElement.textContent = this.previousOperand + this.operation;
+        this.previousTextElement.textContent = this.previousOperand;
+    }
 }
