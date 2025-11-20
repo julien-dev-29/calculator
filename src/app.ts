@@ -36,7 +36,7 @@ equalButton.addEventListener('click', () => {
 
 window.addEventListener('keypress', (e) => {
     console.log(e);
-    
+
     const regexNumber = /[0-9.]/g
     const regexOperator = /[\/*-+]/g
     if (e.key.match(regexNumber))

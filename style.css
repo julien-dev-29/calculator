@@ -40,6 +40,7 @@ body {
 }
 
 .output {
+  padding-top: 24px;
   margin: 5px;
   padding: 16px;
   width: 100%;
@@ -66,9 +67,9 @@ body {
 
 .row {
   display: flex;
-  margin-top: 4px;
+  margin-bottom: 2px;
   justify-content: space-between;
-  gap: 4px;
+  gap: 2px;
 }
 
 .clear {
@@ -107,6 +108,7 @@ button {
 }
 
 .equal {
+  flex-basis: 25%;
   background-color: var(--bg-btn);
   color: var();
 }
@@ -134,5 +136,9 @@ button {
     border: 1px solid #2a2a2a;
     height: 100%;
     width: 500px;
+  }
+
+  .output {
+    height: 200px;
   }
 }
